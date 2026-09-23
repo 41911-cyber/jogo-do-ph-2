@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fortune Tiger Slots 🐯🎰</title>
+  <!-- Fonte moderna e divertida -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Canvas para efeito de confetes nas vitórias -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <div class="game-container">
+    <!-- Telhado Pagoda / Mascote Tigrinho do Topo -->
+    <div class="temple-roof">
+      <div class="roof-crest"></div>
+      <div class="mascot-badge">
+        <span class="mascot-emoji">🐯</span>
+        <span class="mascot-text">FORTUNE SLOTS</span>
+      </div>
+      <button id="sound-btn" class="sound-toggle" title="Ativar/Desativar Som" aria-label="Alternar som">
+        🔊
+      </button>
+    </div>
+
+    <!-- Gabinete do Caça-Níquel Dourado Estilo Oriental -->
+    <main class="slot-machine">
+      <div class="reels-container">
+        <!-- Rolo 1 -->
+        <div class="reel-box">
+          <div id="reel1" class="reel">🐯</div>
+        </div>
+        <!-- Rolo 2 -->
+        <div class="reel-box">
+          <div id="reel2" class="reel">🪙</div>
+        </div>
+        <!-- Rolo 3 -->
+        <div class="reel-box">
+          <div id="reel3" class="reel">🧧</div>
+        </div>
+      </div>
+
+      <!-- Enfeites de lanternas / luzes arcade nas bordas -->
+      <div class="lights-deco left-lights">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="lights-deco right-lights">
+        <span></span><span></span><span></span>
+      </div>
+    </main>
+
+    <!-- Faixa Dourada de Mensagem e Vitória -->
+    <div id="message-bar" class="message-bar">
+      🐯 O Tigrinho da Sorte está pronto! Faça sua aposta!
+    </div>
+
+    <!-- Painel de Moedas (Saldo, Aposta, Último Prêmio) -->
+    <section class="scoreboard">
+      <div class="score-card">
+        <span class="label">SALDO</span>
+        <span id="balance" class="value">1000</span>
+      </div>
+      <div class="score-card">
+        <span class="label">APOSTA</span>
+        <span id="current-bet-display" class="value cost">10</span>
+      </div>
+      <div class="score-card">
+        <span class="label">GANHO</span>
+        <span id="last-win" class="value win">0</span>
+      </div>
+    </section>
+
+    <!-- Seletor de Valores Maiores de Aposta -->
+    <section class="bet-controls">
+      <div class="bet-adjuster">
+        <button id="bet-minus-btn" class="bet-step-btn" title="Diminuir Aposta" aria-label="Diminuir aposta">−</button>
+        <span class="bet-label-title">VALOR DA APOSTA</span>
+        <button id="bet-plus-btn" class="bet-step-btn" title="Aumentar Aposta" aria-label="Aumentar aposta">+</button>
+      </div>
+
+      <!-- Botões rápidos de aposta -->
+      <div class="quick-bets">
+        <button class="bet-chip active" data-bet="10">10</button>
+        <button class="bet-chip" data-bet="25">25</button>
+        <button class="bet-chip" data-bet="50">50</button>
+        <button class="bet-chip" data-bet="100">100</button>
+        <button class="bet-chip" data-bet="250">250</button>
+        <button class="bet-chip max-bet" data-bet="500">MÁX 🚀</button>
+      </div>
+    </section>
+
+    <!-- Área de Ações e Botão Girar -->
+    <div class="controls-area">
+      <!-- Botão Principal GIRAR -->
+      <button id="spin-btn" class="btn-spin">
+        <span class="spin-icon">⚡</span>
+        <span class="spin-text">GIRAR</span>
+        <span id="spin-sub-text" class="spin-sub">APOSTA: 10 🪙</span>
+      </button>
+
+      <!-- Botão Recomeçar (ativo quando o saldo acaba ou para reiniciar) -->
+      <button id="reset-btn" class="btn-reset hidden">
+        🔄 RECOMEÇAR (1000 MOEDAS)
+      </button>
+    </div>
+
+    <!-- Tabela simples de prêmios com multiplicadores -->
+    <footer class="payout-info">
+      <p>🐯x3: <strong>50x</strong> | 🪙x3: <strong>30x</strong> | 🧧x3: <strong>20x</strong> | 💎x3: <strong>15x</strong> | 🔔x3: <strong>10x</strong> | 🍊x3: <strong>5x</strong></p>
+      <p class="sub-info">✨ 2 símbolos iguais pagam <strong>1.5x</strong> o valor da aposta!</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

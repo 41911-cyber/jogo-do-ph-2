@@ -1,0 +1,590 @@
+/* ===================================================
+   FORTUNE TIGER SLOTS - ESTILOS VISUAIS
+   Tema: Templo Oriental Dourado e Vermelho Festivo
+   Cores: Vermelho Rubro (#800f2f), Dourado Imperial (#ffd700),
+          Laranja Brilhante (#fb5607), Jade (#06d6a0)
+   =================================================== */
+
+:root {
+  --bg-deep: #250207;
+  --bg-crimson: #5c0715;
+  --gold-primary: #ffd700;
+  --gold-glow: #ffb703;
+  --gold-dark: #b38600;
+  --red-accent: #d90429;
+  --jade-green: #06d6a0;
+  --jade-glow: #05f2b5;
+  --text-gold: #fff3b0;
+  --card-bg: rgba(0, 0, 0, 0.45);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Fredoka', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: radial-gradient(circle at 50% 30%, #720917 0%, #2b0207 70%, #150104 100%);
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 12px;
+  overflow-x: hidden;
+  user-select: none;
+}
+
+/* Canvas dos Confetes */
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* Container Principal do Jogo */
+.game-container {
+  width: 100%;
+  max-width: 460px;
+  background: linear-gradient(180deg, #4d0713 0%, #290208 100%);
+  border: 4px solid var(--gold-primary);
+  border-radius: 28px;
+  padding: 20px 16px;
+  box-shadow: 0 0 35px rgba(255, 215, 0, 0.4), 0 20px 45px rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  animation: entranceAnim 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  position: relative;
+}
+
+@keyframes entranceAnim {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Telhado Pagoda e Mascote Tigrinho */
+.temple-roof {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.mascot-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 auto;
+  background: linear-gradient(90deg, #b38600, #ffd700, #b38600);
+  padding: 4px 18px;
+  border-radius: 20px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 215, 0, 0.5);
+  border: 1px solid #fff;
+}
+
+.mascot-emoji {
+  font-size: 1.8rem;
+  animation: tigerWiggle 2.5s infinite ease-in-out;
+  display: inline-block;
+}
+
+@keyframes tigerWiggle {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(-8deg) scale(1.1); }
+  75% { transform: rotate(8deg) scale(1.1); }
+}
+
+.mascot-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #4a000a;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Botão de Som */
+.sound-toggle {
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid var(--gold-primary);
+  color: #fff;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, background 0.2s;
+  position: absolute;
+  right: 0;
+}
+
+.sound-toggle:hover {
+  transform: scale(1.12);
+  background: rgba(255, 215, 0, 0.2);
+}
+
+/* Gabinete Dourado dos Rolos */
+.slot-machine {
+  width: 100%;
+  background: linear-gradient(180deg, #1d0105 0%, #0d0003 100%);
+  border: 4px solid var(--gold-primary);
+  border-radius: 22px;
+  padding: 16px 12px;
+  position: relative;
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.9), 0 0 20px rgba(255, 215, 0, 0.35);
+}
+
+.reels-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.reel-box {
+  flex: 1;
+  height: 110px;
+  background: linear-gradient(180deg, #fffdf0 0%, #fef3c7 50%, #fde68a 100%);
+  border: 3px solid #d4af37;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: inset 0 6px 10px rgba(0, 0, 0, 0.3), 0 4px 10px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+
+.reel {
+  font-size: 3.5rem;
+  line-height: 1;
+  transition: transform 0.1s ease-out;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.35));
+}
+
+.reel.spinning {
+  animation: reelSpin 0.14s infinite linear;
+  filter: blur(1.5px);
+}
+
+@keyframes reelSpin {
+  0% { transform: translateY(-40px); opacity: 0.6; }
+  50% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(40px); opacity: 0.6; }
+}
+
+.reel-box.winner {
+  border-color: #ffd700;
+  box-shadow: 0 0 22px #ffd700, inset 0 0 16px rgba(255, 215, 0, 0.7);
+  animation: winnerPulse 0.5s infinite alternate ease-in-out;
+}
+
+@keyframes winnerPulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
+}
+
+/* Lanternas decorativas laterais */
+.lights-deco {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.left-lights { left: 4px; }
+.right-lights { right: 4px; }
+
+.lights-deco span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold-primary);
+  box-shadow: 0 0 8px var(--gold-primary);
+  animation: blinkLights 1.2s infinite alternate;
+}
+
+.lights-deco span:nth-child(2) {
+  animation-delay: 0.4s;
+  background: #ff0055;
+  box-shadow: 0 0 8px #ff0055;
+}
+
+.lights-deco span:nth-child(3) {
+  animation-delay: 0.8s;
+  background: #06d6a0;
+  box-shadow: 0 0 8px #06d6a0;
+}
+
+@keyframes blinkLights {
+  from { opacity: 0.35; }
+  to { opacity: 1; transform: scale(1.25); }
+}
+
+/* Faixa Dourada de Mensagem */
+.message-bar {
+  width: 100%;
+  background: linear-gradient(90deg, rgba(80, 5, 15, 0.85), rgba(120, 10, 25, 0.95), rgba(80, 5, 15, 0.85));
+  border: 2px solid var(--gold-primary);
+  border-radius: 14px;
+  padding: 8px 12px;
+  text-align: center;
+  font-size: 0.98rem;
+  font-weight: 600;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-gold);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s;
+}
+
+.message-bar.win {
+  background: linear-gradient(90deg, #d90429, #ffb703, #d90429);
+  color: #2b0207;
+  font-size: 1.12rem;
+  font-weight: 700;
+  animation: bounceMessage 0.5s ease;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+  border-color: #ffffff;
+}
+
+@keyframes bounceMessage {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Painel de Moedas */
+.scoreboard {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1.1fr;
+  gap: 8px;
+}
+
+.score-card {
+  background: rgba(0, 0, 0, 0.55);
+  border: 2px solid rgba(255, 215, 0, 0.4);
+  border-radius: 14px;
+  padding: 8px 6px;
+  text-align: center;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+.score-card .label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #ffc300;
+  letter-spacing: 0.5px;
+}
+
+.score-card .value {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.score-card .value.cost {
+  color: #ff9e00;
+}
+
+.score-card .value.win {
+  color: #06d6a0;
+  text-shadow: 0 0 10px rgba(6, 214, 160, 0.4);
+}
+
+/* ===================================================
+   CONTROLES DE APOSTA (VALORES MAIORES)
+   =================================================== */
+.bet-controls {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  border: 2px solid rgba(255, 215, 0, 0.35);
+  border-radius: 16px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bet-adjuster {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bet-label-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffd700;
+  letter-spacing: 1px;
+}
+
+.bet-step-btn {
+  width: 34px;
+  height: 34px;
+  background: linear-gradient(180deg, #d90429 0%, #7d0016 100%);
+  border: 2px solid var(--gold-primary);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.bet-step-btn:hover:not(:disabled) {
+  transform: scale(1.1);
+  background: #ff1a40;
+}
+
+.bet-step-btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.bet-step-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.quick-bets {
+  display: flex;
+  gap: 6px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.bet-chip {
+  flex: 1;
+  min-width: 48px;
+  padding: 6px 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(255, 215, 0, 0.4);
+  border-radius: 10px;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.bet-chip:hover {
+  background: rgba(255, 215, 0, 0.2);
+  border-color: var(--gold-primary);
+  transform: translateY(-1px);
+}
+
+.bet-chip.active {
+  background: linear-gradient(180deg, #ffc300 0%, #ff8800 100%);
+  color: #2b0207;
+  border-color: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 195, 0, 0.7);
+  transform: scale(1.05);
+}
+
+.bet-chip.max-bet {
+  background: linear-gradient(180deg, #06d6a0 0%, #00875a 100%);
+  color: #ffffff;
+  border-color: #05f2b5;
+}
+
+.bet-chip.max-bet.active {
+  background: linear-gradient(180deg, #05f2b5 0%, #06d6a0 100%);
+  color: #0d3829;
+  box-shadow: 0 0 12px rgba(6, 214, 160, 0.8);
+}
+
+/* ===================================================
+   BOTÃO GIRAR & AÇÕES
+   =================================================== */
+.controls-area {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Botão GIRAR Estilo Jade e Ouro */
+.btn-spin {
+  width: 100%;
+  height: 66px;
+  background: linear-gradient(180deg, #06d6a0 0%, #05a077 50%, #02664b 100%);
+  border: 3.5px solid var(--gold-primary);
+  border-radius: 20px;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  cursor: pointer;
+  box-shadow: 0 8px 0 #014230, 0 12px 25px rgba(6, 214, 160, 0.5);
+  transition: all 0.15s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-spin::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(25deg);
+  animation: shineGlow 3s infinite;
+}
+
+@keyframes shineGlow {
+  0% { left: -60%; }
+  25% { left: 140%; }
+  100% { left: 140%; }
+}
+
+.btn-spin:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 10px 0 #014230, 0 15px 30px rgba(6, 214, 160, 0.7);
+}
+
+.btn-spin:active:not(:disabled) {
+  transform: translateY(6px);
+  box-shadow: 0 2px 0 #014230, 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.btn-spin:disabled {
+  background: #555;
+  border-color: #888;
+  color: #bbb;
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-spin:disabled::after {
+  display: none;
+}
+
+.spin-sub {
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  color: #ffe699;
+  font-weight: 600;
+}
+
+/* Botão Recomeçar */
+.btn-reset {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(180deg, #d90429 0%, #99001b 100%);
+  border: 2px solid var(--gold-primary);
+  border-radius: 14px;
+  color: white;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #57000f, 0 8px 15px rgba(217, 4, 41, 0.4);
+  transition: all 0.2s;
+}
+
+.btn-reset:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+}
+
+.btn-reset:active {
+  transform: translateY(3px);
+  box-shadow: none;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Tabela de Prêmios Compacta */
+.payout-info {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 12px;
+  padding: 8px 12px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #ffe8b3;
+  line-height: 1.4;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.payout-info .sub-info {
+  color: var(--gold-primary);
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+/* Responsividade para Smartphones */
+@media (max-width: 440px) {
+  .game-container {
+    padding: 16px 12px;
+    border-radius: 20px;
+  }
+
+  .mascot-text {
+    font-size: 1.05rem;
+  }
+
+  .reel-box {
+    height: 92px;
+  }
+
+  .reel {
+    font-size: 2.8rem;
+  }
+
+  .btn-spin {
+    height: 60px;
+    font-size: 1.4rem;
+  }
+
+  .bet-chip {
+    font-size: 0.82rem;
+    padding: 5px 3px;
+  }
+}
